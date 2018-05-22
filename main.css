@@ -1,25 +1,52 @@
-*{margin:0;padding:0;box-sizing: border-box;}
+*{margin:0;padding:0;box-sizing: border-box;transition: 0.3s;}
 li{list-style: none;}
+a{text-decoration: none;color:#000;}
 html, body{width: 100%;height: 100%;}
 header{
   height: 50px;width: 100%;
-  /* background: rgba(0, 0, 0, 0.3); */
   position: relative;z-index: 1;
+  top:0;
+}
+header:hover{background:rgba(0,0,0,0.4);}
+#time_box{
+  float:right;height: 100%;width: 90px;
 }
 main{
   position: absolute;
   top:0;right:0;bottom:0;left:0;
-  background: url(img/1091.jpg);
-  background-position: center;
-  background-repeat: no-repeat;
+  background: url(img/1091.jpg) center no-repeat;
   background-size: contain;
 }
-#github{
+#table_wrap{display:table;width: 100%;height: 100%;}
+#cell_wrap{display:table-cell;vertical-align: middle;text-align: center;}
+.box{
+  max-width: 530px;margin:0 auto;padding:5px;font-size: 0px;
+}
+.app_box{
+  width: 130px;
+  height: 130px;
+  display: inline-block;
+  padding: 25px;
+}
+.app_box:hover{background:rgba(0,0,0,0.5);border-radius: 4px;}
+.con{width: 80px;height: 80px;font-size:15px;}
+#github>img{
   position: fixed;
   right: 0;bottom: 0;
   width: 70px;
   height: 70px;
+  z-index: 1;
 }
-#github>img{
-  width: inherit;height: inherit;
+#github>img:hover ~ #pyj{bottom:70px;}
+#pyj{
+  color: black;
+  position: fixed;
+  right: 0;
+  bottom: 40px;
+  width: 70px;
+  font-size: 30px;
+  letter-spacing: 10px;
+  line-height: 30px;
+  font-weight: bold;
+  z-index: 0;
 }
