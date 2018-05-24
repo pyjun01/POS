@@ -2,6 +2,6 @@
 # PYJ
 # OS
 # app{
-# project, info, memo, github,
+# project, 당번, memo, github,
 # mine, ttt, card, mail,
 # }

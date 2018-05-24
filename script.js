@@ -1,3 +1,6 @@
+function log(e) {
+  console.log(e);
+}
 let t=new Date();
 let code = "";
 let before=t.getMinutes();
@@ -16,3 +19,19 @@ setInterval(()=>{
 		before= t.getMinutes();
   }
 },2000);
+let already= [true, true, true, true, true, true, true];
+$('.modal').on('click',function() {
+  if(already[$(this).index()]){
+    let name=$(this).attr('href').split("#")[1];
+    let modal = `
+    <div class="modal_pop" id="${name}">
+      <div class="modal_head">
+        ${name}
+      </div>
+      <div class="modal_main">
+      </div>
+    </div>`;
+    $('main').append(modal).children(".modal_pop").draggable({scroll: false });
+    already[$(this).index()]=false;
+  }
+});
