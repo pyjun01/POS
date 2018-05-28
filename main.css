@@ -11,7 +11,7 @@ header{
   position: relative;z-index: 1;
   top:0;
 }
-/* header:hover{background:rgba(0,0,0,0.4);} */
+
 #time_box{
   float:right;height: 100%;width: 90px;background:#fff;
   font-size:17px;text-align: center;line-height: 45px;
@@ -69,16 +69,63 @@ main{
 .modal_pop{
   position: absolute;
   background:#fff;
-  border:1px solid #000;
-  width: 300px;
+  min-width: 250px;
+  min-height: 45px;
+  width:300px;
   height: 300px;
   z-index: 1;
   left:2vw;
   top:2vh;
   transition: unset;
-  box-shadow: 0 0 3px #333;
+  box-shadow: 1px 1px 3px #333;
 }
+.modal_pop>*{float:left;}
 .modal_head{
   font-size: 30px;
   border-bottom: 1px solid #000;
+  width:calc(100% - 1px);
+}
+.modal_close{
+    float: right;
+    margin: 10px;
+    display: inline-block;
+    height: 25px;width: 25px;
+    line-height: 25px;text-align: center;
+    font-size: 24px;
+    cursor: pointer;
+}
+.modal_main{
+  width:calc(100% - 1px);
+  height: calc(100% - 47px);
+}
+.lr-resize{
+  width: 1px;height: calc(100% - 2px);
+  cursor: ew-resize;
+  float:right
+}
+.lr-resize::after{
+  content: "";
+  display: block;
+  width: 4px;
+  height: calc(100% - 2px);
+  position: absolute;
+  right: -2px;
+  z-index: auto;
+}
+.slash-resize{
+  width: 2px;height: 2px;
+  cursor: nw-resize;
+}
+.tb-resize{
+  width: calc(100% - 2px);height: 2px;
+  cursor: ns-resize;
+}
+.tb-resize::after{
+  content: "";
+  display: block;
+  height: 4px;
+  width: calc(100% - 2px);
+  position: absolute;
+  bottom: -2px;
+  z-index: auto;
 }
