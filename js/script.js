@@ -14,7 +14,7 @@ function Clock() {
 }
 function GetTime() {
   code= "";
-  code+= (10 > (t.getHours()+12)%12 ? "0" : "") + (t.getHours()+12)%12 + ":";
+  code+= t.getHours()==12? 12+":": (10 > (t.getHours()+12)%12 ? "0" : "") + (t.getHours()+12)%12 + ":";
   code+= (10 > t.getMinutes() ? "0" : "") + t.getMinutes() + " ";
   code+= t.getHours() >= 12 ? "pm" : "am";
   tb.textContent= code;
@@ -99,7 +99,7 @@ function modal_resize() {
         break;
     }
     return resizetb=eve.pageY,resizelr=eve.pageX;
-  }//모달창 사이즈조절
+  }
   function styleset(lt,ep,w,tf) {
     tf
     ? lt>ep
@@ -112,25 +112,26 @@ function modal_resize() {
 function modal_open() {
   let modal=document.getElementsByClassName("modal");
   for (var i = 0; i < modal.length; i++) {
+    let n=i;
     modal[i].addEventListener('click',function () {
-      if(already[$(this).index()]){
-        let name=$(this).attr('href').split("#")[1];
-        let modal = `
-        <div class="modal_pop" id="${name}">
-
-          <div class="modal_head">
-            ${name}
-            <span class="modal_close ${name}">X
-            </span>
-          </div>
-          <div class="lr-resize resize"></div>
-          <div class="modal_main">
-          </div>
-          <div class="tb-resize resize"></div>
-          <div class="slash-resize resize"></div>
-        </div>`;
-        $('main').append(modal);
-        already[$(this).index()]=false;
+      if(already[n]){
+        let name=this.getAttribute('href').split("#")[1];
+        let z = document.createElement('div');
+        z.classList.add("modal_pop");z.id=name;
+        z.innerHTML = `
+        <div class="modal_head">
+          ${name}
+          <span class="modal_close ${name}">X
+          </span>
+        </div>
+        <div class="lr-resize resize"></div>
+        <div class="modal_main">
+        </div>
+        <div class="tb-resize resize"></div>
+        <div class="slash-resize resize"></div>`;
+        let main=document.getElementsByTagName('main')[0];
+        main.appendChild(z);
+        already[n]=false;
       }
     }, false);
   }
@@ -138,13 +139,13 @@ function modal_open() {
 function modal_close() {
   document.addEventListener("click",(e) =>{
     if(e.target.classList[0]=="modal_close"){
-      let target_parent=document.getElementById(e.target.classList[1]);
+      let target_parent=e.target.classList[1];
       let main= document.getElementsByTagName("main")[0];
       let num= name.findIndex((ele) =>{
         return ele==target_parent;
       });
       already[num]=true;
-      main.removeChild(target_parent);
+      main.removeChild(document.getElementById(target_parent));
     }
   });
 }

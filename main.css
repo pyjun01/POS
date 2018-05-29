@@ -84,6 +84,7 @@ main{
   font-size: 30px;
   border-bottom: 1px solid #000;
   width:calc(100% - 1px);
+  padding-left:7px;
 }
 .modal_close{
     float: right;
