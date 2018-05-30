@@ -82,7 +82,7 @@ main{
 .modal_pop>*{float:left;}
 .modal_head{
   font-size: 30px;
-  border-bottom: 1px solid #000;
+  background: rgba(0,0,0,0.05);
   width:calc(100% - 1px);
   padding-left:7px;
 }
