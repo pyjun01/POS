@@ -98,6 +98,7 @@ main{
 .modal_main{
   width:calc(100% - 1px);
   height: calc(100% - 47px);
+  overflow-y: scroll;
 }
 .lr-resize{
   width: 1px;height: calc(100% - 2px);
