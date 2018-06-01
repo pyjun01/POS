@@ -2,6 +2,15 @@
   font-family: NotoBold;
   src:url("./NotoSerifCJKkr-Bold.otf");
 }
+::-webkit-scrollbar{
+    width:10px;
+}
+/* Handle */
+::-webkit-scrollbar-thumb { background: #000; }
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover { background: rgba(0, 0, 0, 0.7); }
+
 *{margin:0;padding:0;box-sizing: border-box;transition: 0.3s;font-family: NotoBold;user-select: none;}
 li{list-style: none;}
 a{text-decoration: none;color:#000;}
