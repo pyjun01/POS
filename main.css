@@ -80,8 +80,8 @@ main{
   background:#fff;
   min-width: 250px;
   min-height: 45px;
-  width:300px;
-  height: 300px;
+  width:450px;
+  height: 350px;
   z-index: 1;
   left:2vw;
   top:2vh;
@@ -140,3 +140,5 @@ main{
   bottom: -2px;
   z-index: auto;
 }
+.memo_link{transition:0.2s;display: block;}
+.memo_link:hover{background-color:#f7f7f7;}

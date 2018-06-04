@@ -118,9 +118,10 @@ function modal_open() {
         let name=this.getAttribute('href').split("#")[1];
         let z = document.createElement('div');
         z.classList.add("modal_pop");z.id=name;
+        // 124: ${name}
         z.innerHTML = `
         <div class="modal_head">
-          ${name}
+
           <span class="modal_close ${name}">X
           </span>
         </div>
