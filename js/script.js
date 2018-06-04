@@ -125,8 +125,7 @@ function modal_open() {
           </span>
         </div>
         <div class="lr-resize resize"></div>
-        <div class="modal_main">
-        </div>
+        <div class="modal_main"></div>
         <div class="tb-resize resize"></div>
         <div class="slash-resize resize"></div>`;
         let main=document.getElementsByTagName('main')[0];
