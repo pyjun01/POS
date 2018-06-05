@@ -7,7 +7,6 @@
 }
 /* Handle */
 ::-webkit-scrollbar-thumb { background: #000; }
-
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover { background: rgba(0, 0, 0, 0.7); }
 
@@ -107,7 +106,6 @@ main{
 .modal_main{
   width:calc(100% - 1px);
   height: calc(100% - 47px);
-  overflow-y: scroll;
 }
 .lr-resize{
   width: 1px;height: calc(100% - 2px);
@@ -140,5 +138,9 @@ main{
   bottom: -2px;
   z-index: auto;
 }
-.memo_link{transition:0.2s;display: block;}
-.memo_link:hover{background-color:#f7f7f7;}
+.memo_link{transition:0.2s;display: block;word-break: break-all;}
+.memo_link:hover{background-color:#eeeeee;}
+.modal_main>div,.modal_main>textarea{float:left;overflow-y: scroll;transition: none;height: 100%;padding-left: 4px;}
+.title_box{width:180px;border-right:1px solid #000;}
+.content_box{resize: none;border:none;width:calc(100% - 180px);}
+.content_box:focus{outline:none;}
