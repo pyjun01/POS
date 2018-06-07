@@ -46,21 +46,26 @@ main{
 .app_box:hover .name{background:0;transition: 0.4s;}
 .con{width: 80px;height: 100px;font-size:15px;}
 .icon{
-  width: 80px;height: 80px;
-  border: 1px solid #000;background: white;
-
+  width: 80px;
+  height: 80px;
+  display: block;
+  background: white;
+  border-radius: 50%;
+}
+.icon[alt="github_icon"]{
+  background: none;
 }
 .name{
   font-size:14px;text-align: center;
 }
-#github>img{
+#github_link>img{
   position: fixed;
   right: 0;bottom: 0;
   width: 70px;
   height: 70px;
   z-index: 1;
 }
-#github>img:hover ~ #pyj{bottom:75px;}
+#github_link>img:hover ~ #pyj{bottom:75px;}
 #pyj{
   color: black;
   position: fixed;
