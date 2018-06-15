@@ -100,7 +100,7 @@ bool=0;// 몇번째 난이도인지
 b=0;// 인풋
 mine_x=0;// 길이
 mine_y=0;// 길이
-    
+
 let mine_tab=document.querySelector("#mine>.modal_main");//main_tab
 let mine_code=`
 <div id="form">
@@ -128,23 +128,22 @@ let mine_code=`
                 bool=i;
         }
         makeplate(bool);//make board
-        
+
         let mine_space=document.querySelectorAll(".c");//지뢰 한칸한칸
         for(var i=0;i<mine_space.length;i++){
             //click
             mine_space[i].addEventListener("click",function(){
                 cx=this.getAttribute("data-x");//29
                 cy=this.getAttribute("data-y");//0
-//                console.log(`click= ${cx},${cy}`);
                if(first){//처음
                    first=false;//다음클릭부터는 처음이 아님
                    mine_make(cx,cy);//지뢰 생성29,0
                    starttime=new Date().getTime();
                }
                if(right[cy][cx]==0){//클릭한곳에 지뢰표시가 안돼있으면
+                   this.style.background= '#f7f7f7';
                    already_click[cy][cx]=1;//클릭한곳위치 already_click==1
                    click(cx,cy,this);//클릭29,0
-                   this.style.background= '#f7f7f7';
                }
             });
             //mousedown
@@ -155,8 +154,9 @@ let mine_code=`
                      left=true;
                  }
                  if(e.button==2){
+                     console.log(left&&right[ry][rx] != 1);
                      if(left&&right[ry][rx] != 1){//좌클릭후 우클릭일
-                         for(var i=0;i<x;i++){
+                         for(var i=0;i<mine_x;i++){
                              if(already_click[i].indexOf(1)!= -1){
                                  no(rx,ry);
                                  return false;
@@ -179,19 +179,21 @@ let mine_code=`
              });
              mine_space[i].addEventListener("mouseup",(e) =>{
                 if(e.button==0)
-                left=false;
-                for (var i = 0; i < x; mine_i++) {
+                  left=false;
+                for (var i = 0; i < mine_x; i++) {
                     for (var j = 0; j < mine_y; j++){
-                        if(right[i][j]==1){
+                        if(right[j][i]===1){
                             over_stack++;
-                        }else if(already_click[i][j]===1){
+                        }else if(already_click[j][i]===1){
                             over_stack++;
                         }
                     }
                 }
                 if(over_stack==mine_x*mine_y){
                     endtime= new Date().getTime();
-                    alert(`${(endtime - starttime)/1000}초. 클리어`);
+                    let playtime=endtime - starttime;
+                    alert(`${ playtime / 1000 }초. 클리어`);
+                    document.querySelector(".mine").click();
                 }else{
                     over_stack=0;
                 }
@@ -220,7 +222,6 @@ function mine_make(n, n2) { //29, 0
 function makemine(mmx, mmy,i) {//29, 0, i
     mx = Math.floor(Math.random() * (mine_x)); //랜덤좌표 상하 길이 mine_x=30 0~29
     my = Math.floor(Math.random() * (mine_y)); //랜덤좌표 좌우 길이 mine_y=16 0~15
-//    console.log(`${my},${mx}`);
     if(where(mx,my, mmx,mmy)){//0~29, 0~15, 29, 0
         makemine(mmx,mmy,i);//29, 0, i
     }else{
@@ -254,11 +255,8 @@ function number(nx,ny) {//x,y 0~29, 0~15
         for(var w= -1;w<= 1;w++){
             if(nx-q>=0&&nx-q<mine_x){
                 if(ny-w>=0&&ny-w<mine_y){
-                    if(len[ny-w][nx-q] != true){
-                        console.log(`len[${ny-w}][${nx-q}]= ${len[ny-w][nx-q]}`);
+                    if(len[ny-w][nx-q]!==true)
                         len[ny-w][nx-q]++;
-                        console.log(`len[${ny-w}][${nx-q}]= ${len[ny-w][nx-q]}`);
-                    }
                 }
             }
         }
@@ -267,6 +265,7 @@ function number(nx,ny) {//x,y 0~29, 0~15
 let ttttt;
 //none first
 function click(clx,cly,cli) {//29,0
+  // console.log(len[cly][clx]);
     switch (len[cly][clx]) {//len[0][29]
         case false:
             break;
@@ -287,12 +286,14 @@ function click(clx,cly,cli) {//29,0
         case true://지뢰임
             ttttt=cli;
             ttttt.style.background="black";
-//            if(!over){
-//                endtime= new Date().getTime();
-//                 alert(`${(endtime - starttime)/1000}초. 까비`);
-//                over=true;
-//                right=0;
-//            }
+             if(!over){
+                 endtime= new Date().getTime();
+                 let playtime=endtime - starttime;
+                  alert(`${ playtime / 1000}초. 까비`);
+                  document.querySelector(".mine").click();
+                 over=true;
+                 right=0;
+             }
             break;
         default:
             break;
@@ -307,12 +308,10 @@ function no(nx,ny) {// 29, 0
                 if(ny+j>=0&&ny+j<mine_y){
                     if(i!=0||j!=0){
                         if(len[ny+j][nx+i]>=0|| len[ny+j][nx+i]==true)
-                            $('#plate>li').eq(ny+j).find('li').eq(nx+i).click();   
+                            $('#plate>li').eq(ny+j).find('li').eq(nx+i).click();
                     }
                 }
             }
         }
     }
 }
-
-
