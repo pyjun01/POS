@@ -1,7 +1,7 @@
-@font-face {
+/* @font-face {
   font-family: NotoBold;
   src:url("../fonts/NotoSerifCJKkr-Bold.otf");
-}
+} */
 ::-webkit-scrollbar{width:10px;}
 ::-webkit-scrollbar-thumb { background: #000; }
 ::-webkit-scrollbar-thumb:hover { background: rgba(0, 0, 0, 0.7); }
